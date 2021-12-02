@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 tv_showData.setText(response.toString());
-                Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap headers = new HashMap();
                 headers.put("Content-Type", "application/json");
-                headers.put("apiKey", "eyJjdCI6InJkZll2SDd0WGtvZVJ2Y3I3RTZSb1k5YmVSakt5OHY3d25YMkliZlhrbDFMeGxCcTBoYWZwdG9RUnBJcTBJU2hmZnRINjVqUjNNVlFQQ0R5Vks5Zk1BPT0iLCJpdiI6IjZhZTZlZjgyMDM2ZGZjZGQ2MmU2ODRlZjQ4MTNmNzMxIiwicyI6IjZjNGQ2NWM4YWQxOTdiNDgifQ==");
+                headers.put("string", "eyJjdCI6InJkZll2SDd0WGtvZVJ2Y3I3RTZSb1k5YmVSakt5OHY3d25YMkliZlhrbDFMeGxCcTBoYWZwdG9RUnBJcTBJU2hmZnRINjVqUjNNVlFQQ0R5Vks5Zk1BPT0iLCJpdiI6IjZhZTZlZjgyMDM2ZGZjZGQ2MmU2ODRlZjQ4MTNmNzMxIiwicyI6IjZjNGQ2NWM4YWQxOTdiNDgifQ==");
                 return headers;
             }
         };
