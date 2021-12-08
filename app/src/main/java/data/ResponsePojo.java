@@ -1,5 +1,7 @@
 package data;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -15,6 +17,7 @@ class Result {
     @SerializedName("sub-categories")
     public List<SubCategory> subCategories;
 
+    @NonNull
     @Override
     public String toString() {
         return "Result{" +
@@ -29,6 +32,7 @@ class Result {
 class SubCategory {
     public int id;
 
+    @NonNull
     @Override
     public String toString() {
         return "SubCategory{" +
