@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.nikhil.myapplicationexample.R;
 
 import org.json.JSONException;
@@ -27,6 +28,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import data.ResponsePojo;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView tv_showData;
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     RequestQueue queue;
     String URL = "https://access.myct.co.in/getAllCategory";
+
+    ResponsePojo responsePojo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                tv_showData.setText(response.toString());
-                //Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                tv_showData.setText(response);
+
+                parseResponse(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -92,6 +98,20 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         queue.add(request);
+
+    }
+
+    private void parseResponse(String stringResponse) {
+
+        try {
+
+            Gson gson = new Gson();
+            responsePojo = gson.fromJson(stringResponse, ResponsePojo.class);
+            Log.d("TAG", "parseResponse: print first element to check the output " + responsePojo.result.get(0));
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
 
     }
 
